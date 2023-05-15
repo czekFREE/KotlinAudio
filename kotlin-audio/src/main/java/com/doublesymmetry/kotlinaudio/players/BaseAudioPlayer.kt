@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.ResultReceiver
 import android.support.v4.media.RatingCompat
 import android.support.v4.media.session.MediaSessionCompat
+import android.util.Log
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
 import androidx.media.AudioAttributesCompat
@@ -132,6 +133,9 @@ abstract class BaseAudioPlayer internal constructor(
     val isPlaying
         get() = exoPlayer.isPlaying
 
+    val sessionToken
+        get() = mediaSession.sessionToken
+
     private val notificationEventHolder = NotificationEventHolder()
     private val playerEventHolder = PlayerEventHolder()
 
@@ -180,6 +184,8 @@ abstract class BaseAudioPlayer internal constructor(
     protected val mediaSessionConnector = MediaSessionConnector(mediaSession)
 
     init {
+        Log.d("BaseAudioPlayer", "BaseAudioPlayer.init()")
+
         if (cacheConfig != null) {
             cache = PlayerCache.getInstance(context, cacheConfig)
         }
