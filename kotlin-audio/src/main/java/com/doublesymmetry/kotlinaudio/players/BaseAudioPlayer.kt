@@ -133,9 +133,6 @@ abstract class BaseAudioPlayer internal constructor(
     val isPlaying
         get() = exoPlayer.isPlaying
 
-    val sessionToken
-        get() = mediaSession.sessionToken
-
     private val notificationEventHolder = NotificationEventHolder()
     private val playerEventHolder = PlayerEventHolder()
 

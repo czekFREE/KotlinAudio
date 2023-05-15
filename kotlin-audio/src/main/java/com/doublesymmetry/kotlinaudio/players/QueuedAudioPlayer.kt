@@ -61,6 +61,9 @@ class QueuedAudioPlayer(
     val previousItem: AudioItem?
         get() = items.getOrNull(currentIndex - 1)
 
+    val sessionToken
+        get() = mediaSession.sessionToken
+
     override fun load(item: AudioItem, playWhenReady: Boolean) {
         exoPlayer.playWhenReady = playWhenReady
         load(item)
