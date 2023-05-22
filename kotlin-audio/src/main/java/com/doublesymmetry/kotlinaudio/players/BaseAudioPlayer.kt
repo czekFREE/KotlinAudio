@@ -177,7 +177,8 @@ abstract class BaseAudioPlayer internal constructor(
     private var hasAudioFocus = false
     private var wasDucking = false
 
-    protected val mediaSession = MediaSessionCompat(context, "KotlinAudioPlayer")
+    // TODO - should not probably be public
+    public val mediaSession = MediaSessionCompat(context, "KotlinAudioPlayer")
     protected val mediaSessionConnector = MediaSessionConnector(mediaSession)
 
     init {
