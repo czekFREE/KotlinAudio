@@ -57,54 +57,72 @@ class PlayerEventHolder {
     var onPlayerActionTriggeredExternally = _onPlayerActionTriggeredExternally.asSharedFlow()
 
     internal fun updateAudioPlayerState(state: AudioPlayerState) {
+        Log.d("MusicService", "PlayerEventHolder.updateAudioPlayerState()")
+
         coroutineScope.launch {
             _stateChange.emit(state)
         }
     }
 
     internal fun updatePlaybackEndedReason(reason: PlaybackEndedReason) {
+        Log.d("MusicService", "PlayerEventHolder.updatePlaybackEndedReason()")
+
         coroutineScope.launch {
             _playbackEnd.emit(reason)
         }
     }
 
     internal fun updatePlayWhenReadyChange(playWhenReadyChange: PlayWhenReadyChangeData) {
+        Log.d("MusicService", "PlayerEventHolder.updatePlayWhenReadyChange()")
+
         coroutineScope.launch {
             _playWhenReadyChange.emit(playWhenReadyChange)
         }
     }
 
     internal fun updateAudioItemTransition(reason: AudioItemTransitionReason) {
+        Log.d("MusicService", "PlayerEventHolder.updateAudioItemTransition()")
+
         coroutineScope.launch {
             _audioItemTransition.emit(reason)
         }
     }
 
     internal fun updatePositionChangedReason(reason: PositionChangedReason) {
+        Log.d("MusicService", "PlayerEventHolder.updatePositionChangedReason()")
+
         coroutineScope.launch {
             _positionChanged.emit(reason)
         }
     }
 
     internal fun updateOnAudioFocusChanged(isPaused: Boolean, isPermanent: Boolean) {
+        Log.d("MusicService", "PlayerEventHolder.updateOnAudioFocusChanged()")
+
         coroutineScope.launch {
             _onAudioFocusChanged.emit(FocusChangeData(isPaused, isPermanent))
         }
     }
 
     internal fun updateOnPlaybackMetadata(metadata: PlaybackMetadata) {
+        Log.d("MusicService", "PlayerEventHolder.updateOnPlaybackMetadata()")
+
         coroutineScope.launch {
             _onPlaybackMetadata.emit(metadata)
         }
     }
 
     internal fun updatePlaybackError(error: PlaybackError) {
+        Log.d("MusicService", "PlayerEventHolder.updatePlaybackError() " + error)
+
         coroutineScope.launch {
             _playbackError.emit(error)
         }
     }
 
     internal fun updateOnPlayerActionTriggeredExternally(callback: MediaSessionCallback) {
+        Log.d("MusicService", "PlayerEventHolder.updateOnPlayerActionTriggeredExternally() " + callback)
+
         coroutineScope.launch {
             _onPlayerActionTriggeredExternally.emit(callback)
         }

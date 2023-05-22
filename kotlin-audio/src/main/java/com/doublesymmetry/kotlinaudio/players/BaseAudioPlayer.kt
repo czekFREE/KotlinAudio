@@ -134,7 +134,9 @@ abstract class BaseAudioPlayer internal constructor(
         get() = exoPlayer.isPlaying
 
     private val notificationEventHolder = NotificationEventHolder()
-    private val playerEventHolder = PlayerEventHolder()
+
+    // TODO - should not probably be public
+    public val playerEventHolder = PlayerEventHolder()
 
     var ratingType: Int = RatingCompat.RATING_NONE
         set(value) {
@@ -182,7 +184,7 @@ abstract class BaseAudioPlayer internal constructor(
     protected val mediaSessionConnector = MediaSessionConnector(mediaSession)
 
     init {
-        Log.d("BaseAudioPlayer", "BaseAudioPlayer.init()")
+        Log.d("MusicService", "BaseAudioPlayer.init()")
 
         if (cacheConfig != null) {
             cache = PlayerCache.getInstance(context, cacheConfig)
@@ -287,6 +289,8 @@ abstract class BaseAudioPlayer internal constructor(
 
     internal fun updateNotificationMetadataIfAutomatic() {
         if (automaticallyUpdateNotificationMetadata) {
+            Log.d("MusicService", "BaseAudioPlayer.updateNotificationMetadataIfAutomatic()")
+
             notificationManager.notificationMetadata = NotificationMetadata(
                 currentItem?.title,
                 currentItem?.artist,
@@ -393,6 +397,8 @@ abstract class BaseAudioPlayer internal constructor(
      */
     @CallSuper
     open fun destroy() {
+        Log.d("MusicService", "BaseAudioPlayer.destroy()")
+
         abandonAudioFocusIfHeld()
         stop()
         notificationManager.destroy()

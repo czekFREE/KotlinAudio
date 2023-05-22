@@ -13,6 +13,8 @@ class NotificationEventHolder {
     var notificationStateChange = _notificationStateChange.asSharedFlow()
 
     internal fun updateNotificationState(state: NotificationState) {
+        Log.d("MusicService", "NotificationEventHolder.updateNotificationState() " + callback)
+
         coroutineScope.launch {
             _notificationStateChange.emit(state)
         }
