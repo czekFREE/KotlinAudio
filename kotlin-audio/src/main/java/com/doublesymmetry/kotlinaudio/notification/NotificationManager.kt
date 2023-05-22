@@ -34,6 +34,7 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager
 import com.google.android.exoplayer2.ui.PlayerNotificationManager.CustomActionReceiver
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import android.util.Log
 
 class NotificationManager internal constructor(
     private val context: Context,
