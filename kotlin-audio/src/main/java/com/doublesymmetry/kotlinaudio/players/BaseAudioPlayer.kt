@@ -289,7 +289,7 @@ abstract class BaseAudioPlayer internal constructor(
 
     internal fun updateNotificationMetadataIfAutomatic() {
         if (automaticallyUpdateNotificationMetadata) {
-            Log.d("MusicService", "BaseAudioPlayer.updateNotificationMetadataIfAutomatic()")
+//            Log.d("MusicService", "BaseAudioPlayer.updateNotificationMetadataIfAutomatic()")
 
             notificationManager.notificationMetadata = NotificationMetadata(
                 currentItem?.title,

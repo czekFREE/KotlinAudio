@@ -58,7 +58,7 @@ class PlayerEventHolder {
     var onPlayerActionTriggeredExternally = _onPlayerActionTriggeredExternally.asSharedFlow()
 
     internal fun updateAudioPlayerState(state: AudioPlayerState) {
-        Log.d("MusicService", "PlayerEventHolder.updateAudioPlayerState()")
+//        Log.d("MusicService", "PlayerEventHolder.updateAudioPlayerState()")
 
         coroutineScope.launch {
             _stateChange.emit(state)
@@ -66,7 +66,7 @@ class PlayerEventHolder {
     }
 
     internal fun updatePlaybackEndedReason(reason: PlaybackEndedReason) {
-        Log.d("MusicService", "PlayerEventHolder.updatePlaybackEndedReason()")
+//        Log.d("MusicService", "PlayerEventHolder.updatePlaybackEndedReason()")
 
         coroutineScope.launch {
             _playbackEnd.emit(reason)
@@ -74,7 +74,7 @@ class PlayerEventHolder {
     }
 
     internal fun updatePlayWhenReadyChange(playWhenReadyChange: PlayWhenReadyChangeData) {
-        Log.d("MusicService", "PlayerEventHolder.updatePlayWhenReadyChange()")
+//        Log.d("MusicService", "PlayerEventHolder.updatePlayWhenReadyChange()")
 
         coroutineScope.launch {
             _playWhenReadyChange.emit(playWhenReadyChange)
@@ -82,7 +82,7 @@ class PlayerEventHolder {
     }
 
     internal fun updateAudioItemTransition(reason: AudioItemTransitionReason) {
-        Log.d("MusicService", "PlayerEventHolder.updateAudioItemTransition()")
+//        Log.d("MusicService", "PlayerEventHolder.updateAudioItemTransition()")
 
         coroutineScope.launch {
             _audioItemTransition.emit(reason)
@@ -90,7 +90,7 @@ class PlayerEventHolder {
     }
 
     internal fun updatePositionChangedReason(reason: PositionChangedReason) {
-        Log.d("MusicService", "PlayerEventHolder.updatePositionChangedReason()")
+//        Log.d("MusicService", "PlayerEventHolder.updatePositionChangedReason()")
 
         coroutineScope.launch {
             _positionChanged.emit(reason)
@@ -98,7 +98,7 @@ class PlayerEventHolder {
     }
 
     internal fun updateOnAudioFocusChanged(isPaused: Boolean, isPermanent: Boolean) {
-        Log.d("MusicService", "PlayerEventHolder.updateOnAudioFocusChanged()")
+//        Log.d("MusicService", "PlayerEventHolder.updateOnAudioFocusChanged()")
 
         coroutineScope.launch {
             _onAudioFocusChanged.emit(FocusChangeData(isPaused, isPermanent))
@@ -106,7 +106,7 @@ class PlayerEventHolder {
     }
 
     internal fun updateOnPlaybackMetadata(metadata: PlaybackMetadata) {
-        Log.d("MusicService", "PlayerEventHolder.updateOnPlaybackMetadata()")
+//        Log.d("MusicService", "PlayerEventHolder.updateOnPlaybackMetadata()")
 
         coroutineScope.launch {
             _onPlaybackMetadata.emit(metadata)
@@ -114,7 +114,7 @@ class PlayerEventHolder {
     }
 
     internal fun updatePlaybackError(error: PlaybackError) {
-        Log.d("MusicService", "PlayerEventHolder.updatePlaybackError() " + error)
+//        Log.d("MusicService", "PlayerEventHolder.updatePlaybackError() " + error)
 
         coroutineScope.launch {
             _playbackError.emit(error)
@@ -122,7 +122,7 @@ class PlayerEventHolder {
     }
 
     internal fun updateOnPlayerActionTriggeredExternally(callback: MediaSessionCallback) {
-        Log.d("MusicService", "PlayerEventHolder.updateOnPlayerActionTriggeredExternally() " + callback)
+//        Log.d("MusicService", "PlayerEventHolder.updateOnPlayerActionTriggeredExternally() " + callback)
 
         coroutineScope.launch {
             _onPlayerActionTriggeredExternally.emit(callback)

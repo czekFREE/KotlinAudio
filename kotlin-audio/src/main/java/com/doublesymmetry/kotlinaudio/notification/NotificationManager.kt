@@ -215,7 +215,7 @@ class NotificationManager internal constructor(
         action: String,
         instanceId: Int
     ): NotificationCompat.Action {
-        Log.d("MusicService", "NotificationManager.createNotificationAction()")
+//        Log.d("MusicService", "NotificationManager.createNotificationAction()")
 
         val intent: Intent = Intent(action).setPackage(context.packageName)
         val pendingIntent = PendingIntent.getBroadcast(
@@ -232,7 +232,7 @@ class NotificationManager internal constructor(
     }
 
     private fun handlePlayerAction(action: String) {
-        Log.d("MusicService", "NotificationManager.handlePlayerAction()")
+//        Log.d("MusicService", "NotificationManager.handlePlayerAction()")
 
         when (action) {
             REWIND -> {
@@ -299,7 +299,7 @@ class NotificationManager internal constructor(
     }
 
     fun invalidate() {
-        Log.d("MusicService", "NotificationManager.invalidate()")
+//        Log.d("MusicService", "NotificationManager.invalidate()")
 
         internalNotificationManager?.invalidate()
         mediaSessionConnector.invalidateMediaSessionQueue()
@@ -312,7 +312,7 @@ class NotificationManager internal constructor(
      * **NOTE:** You should only call this once. Subsequent calls will result in an error.
      */
     fun createNotification(config: NotificationConfig) = scope.launch {
-        Log.d("MusicService", "NotificationManager.createNotification()")
+//        Log.d("MusicService", "NotificationManager.createNotification()")
 
         buttons.apply {
             clear()
@@ -527,7 +527,7 @@ class NotificationManager internal constructor(
     }
 
     fun hideNotification() = scope.launch {
-        Log.d("MusicService", "NotificationManager.hideNotification()")
+//        Log.d("MusicService", "NotificationManager.hideNotification()")
 
         internalNotificationManager?.setPlayer(null)
     }
@@ -537,7 +537,7 @@ class NotificationManager internal constructor(
         notification: Notification,
         ongoing: Boolean
     ) {
-        Log.d("MusicService", "NotificationManager.onNotificationPosted()")
+//        Log.d("MusicService", "NotificationManager.onNotificationPosted()")
 
         scope.launch {
             event.updateNotificationState(
@@ -551,7 +551,7 @@ class NotificationManager internal constructor(
     }
 
     override fun onNotificationCancelled(notificationId: Int, dismissedByUser: Boolean) {
-        Log.d("MusicService", "NotificationManager.onNotificationCancelled()")
+//        Log.d("MusicService", "NotificationManager.onNotificationCancelled()")
 
         scope.launch {
             event.updateNotificationState(NotificationState.CANCELLED(notificationId))
@@ -568,7 +568,7 @@ class NotificationManager internal constructor(
         @DrawableRes drawableRes: Int,
         actionName: String
     ): MediaSessionConnector.CustomActionProvider {
-        Log.d("MusicService", "NotificationManager.createMediaSessionAction()")
+//        Log.d("MusicService", "NotificationManager.createMediaSessionAction()")
 
         return object : MediaSessionConnector.CustomActionProvider {
             override fun getCustomAction(player: Player): PlaybackStateCompat.CustomAction? {
