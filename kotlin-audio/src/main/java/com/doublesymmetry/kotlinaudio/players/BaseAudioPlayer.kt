@@ -52,7 +52,8 @@ abstract class BaseAudioPlayer internal constructor(
     internal val context: Context,
     playerConfig: PlayerConfig,
     private val bufferConfig: BufferConfig?,
-    private val cacheConfig: CacheConfig?
+    private val cacheConfig: CacheConfig?,
+    private val mediaSession: MediaSessionCompat
 ) : AudioManager.OnAudioFocusChangeListener {
     protected val exoPlayer: ExoPlayer
 
@@ -180,7 +181,7 @@ abstract class BaseAudioPlayer internal constructor(
     private var wasDucking = false
 
     // TODO - should not probably be public
-    public val mediaSession = MediaSessionCompat(context, "KotlinAudioPlayer")
+    // public val mediaSession = MediaSessionCompat(context, "KotlinAudioPlayer")
     protected val mediaSessionConnector = MediaSessionConnector(mediaSession)
 
     init {

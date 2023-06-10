@@ -312,7 +312,7 @@ class NotificationManager internal constructor(
      * **NOTE:** You should only call this once. Subsequent calls will result in an error.
      */
     fun createNotification(config: NotificationConfig) = scope.launch {
-//        Log.d("MusicService", "NotificationManager.createNotification()")
+        Log.d("MusicService", "NotificationManager.createNotification()")
 
         buttons.apply {
             clear()

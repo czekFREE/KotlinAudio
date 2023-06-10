@@ -1,6 +1,7 @@
 package com.doublesymmetry.kotlinaudio.players
 
 import android.content.Context
+import android.support.v4.media.session.MediaSessionCompat
 import com.doublesymmetry.kotlinaudio.models.*
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.IllegalSeekPositionException
@@ -13,8 +14,9 @@ class QueuedAudioPlayer(
     context: Context,
     playerConfig: PlayerConfig = PlayerConfig(),
     bufferConfig: BufferConfig? = null,
-    cacheConfig: CacheConfig? = null
-) : BaseAudioPlayer(context, playerConfig, bufferConfig, cacheConfig) {
+    cacheConfig: CacheConfig? = null,
+    mediaSession: MediaSessionCompat = MediaSessionCompat(context, "KotlinAudioPlayer")
+) : BaseAudioPlayer(context, playerConfig, bufferConfig, cacheConfig, mediaSession) {
     private val queue = LinkedList<MediaSource>()
     override val playerOptions = DefaultQueuedPlayerOptions(exoPlayer)
 
@@ -60,9 +62,6 @@ class QueuedAudioPlayer(
 
     val previousItem: AudioItem?
         get() = items.getOrNull(currentIndex - 1)
-
-    val sessionToken
-        get() = mediaSession.sessionToken
 
     override fun load(item: AudioItem, playWhenReady: Boolean) {
         exoPlayer.playWhenReady = playWhenReady
