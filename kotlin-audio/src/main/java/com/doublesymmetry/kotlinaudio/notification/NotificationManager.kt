@@ -8,8 +8,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.ResultReceiver
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
@@ -35,6 +37,7 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager.CustomActionRe
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import android.util.Log
+import com.google.android.exoplayer2.C
 
 class NotificationManager internal constructor(
     private val context: Context,
@@ -208,6 +211,47 @@ class NotificationManager internal constructor(
             }
         )
         mediaSessionConnector.setMetadataDeduplicationEnabled(true)
+
+        mediaSessionConnector.setPlaybackPreparer(KotlinAudioPlaybackPreparer())
+    }
+
+    private inner class KotlinAudioPlaybackPreparer : MediaSessionConnector.PlaybackPreparer {
+        override fun getSupportedPrepareActions(): Long =
+            PlaybackStateCompat.ACTION_PREPARE_FROM_MEDIA_ID or
+                    PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID or
+                    PlaybackStateCompat.ACTION_PREPARE_FROM_URI or
+                    PlaybackStateCompat.ACTION_PLAY_FROM_URI or
+                    PlaybackStateCompat.ACTION_PREPARE_FROM_SEARCH or
+                    PlaybackStateCompat.ACTION_PLAY_FROM_SEARCH
+//
+        override fun onPrepare(playWhenReady: Boolean) {
+            Log.d("MusicService", "KotlinAudioPlaybackPreparer.onPrepare() " + playWhenReady)
+        }
+
+        override fun onPrepareFromMediaId(
+            mediaId: String,
+            playWhenReady: Boolean,
+            extras: Bundle?
+        ) {
+            Log.d("MusicService", "KotlinAudioPlaybackPreparer.onPrepareFromMediaId() " + mediaId)
+        }
+
+        override fun onPrepareFromSearch(query: String, playWhenReady: Boolean, extras: Bundle?) {
+            Log.d("MusicService", "KotlinAudioPlaybackPreparer.onPrepareFromSearch() " + query)
+        }
+
+        override fun onPrepareFromUri(uri: Uri, playWhenReady: Boolean, extras: Bundle?) {
+            Log.d("MusicService", "KotlinAudioPlaybackPreparer.onPrepareFromUri() " + uri)
+        }
+
+
+        override fun onCommand(
+            player: Player,
+            command: String,
+            extras: Bundle?,
+            cb: ResultReceiver?
+        ) = false
+
     }
 
     private fun createNotificationAction(
